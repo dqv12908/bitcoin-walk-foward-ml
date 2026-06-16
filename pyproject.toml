@@ -1,0 +1,20 @@
+[project]
+name = "btc-direction-predictor"
+version = "0.1.0"
+description = "CLI Bitcoin candle direction prediction, validation, search, and paper tracking system"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "joblib>=1.4",
+  "lightgbm>=4.0",
+  "numpy>=1.26",
+  "pandas>=2.2",
+  "requests>=2.31",
+  "scikit-learn>=1.8",
+  "torch>=2.0",
+  "websockets>=15.0",
+  "xgboost>=3.0",
+]
+
+[project.scripts]
+btc-predict = "btc_direction.cli:main"

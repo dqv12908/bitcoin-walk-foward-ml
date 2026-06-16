@@ -1,0 +1,53 @@
+data:
+  symbol: BTCUSDT
+  market: futures
+  base_interval: 1m
+  raw_dir: data/raw
+  model_dir: models
+  report_dir: reports
+  paper_db: data/paper_predictions.sqlite3
+  experiment_db: data/experiments.sqlite3
+  include_spot: true
+  include_open_interest: true
+  include_funding: true
+  include_hyperliquid: true
+  include_coinbase: true
+  include_bybit: true
+  include_okx: true
+  include_agg_trades: true
+  include_live_flow: true
+  include_order_book: true
+  include_derivative_ratios: true
+  include_basis_klines: true
+  include_context_timeframes: true
+  context_timeframes: [15m, 1h, 4h]
+
+prediction:
+  timeframes: [1m, 3m, 5m, 15m, 30m, 1h, 4h]
+  horizons: [1, 2, 3]
+  label_mode: close_to_close
+  min_move_bps: 0.0
+  feature_groups: [all]
+  high_confidence_threshold: 0.60
+  edge_accuracy_threshold: 0.60
+  high_confidence_edge_threshold: 0.60
+  min_high_confidence_coverage: 0.10
+  min_margin_over_best_baseline: 0.01
+  max_rows_per_task: 180000
+
+walk_forward:
+  splits: 5
+  min_train_size: 8000
+  test_size: 4000
+  calibration_fraction: 0.20
+  embargo_multiplier: 1
+
+models:
+  candidates: [hist_gradient_boosting, extra_trees, lightgbm, xgboost, logistic, ensemble_fast]
+  use_gpu: true
+  random_seed: 42
+  n_jobs: -1
+
+runtime:
+  log_level: INFO
+  fetch_sleep_seconds: 0.035
